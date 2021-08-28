@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+  final Function toggleFavorite;
+  final Function isFavorite;
+
+  MealDetailScreen(this.toggleFavorite, this.isFavorite);
 
   Widget buidSectionTitle(BuildContext ctx, String title) {
     return Container(
@@ -90,13 +94,23 @@ class MealDetailScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
-          Icons.delete,
-          color: Colors.red,
+          isFavorite(mealId) ? Icons.star : Icons.star_border,
         ),
-        onPressed: () {
-          Navigator.of(context).pop(mealId);
-        },
+        onPressed: () => toggleFavorite(mealId),
       ),
     );
   }
 }
+
+//below floating action button use for delete element in the scrren but lately we change that as a add favorite 
+//  floatingActionButton: FloatingActionButton(
+        
+//         child: Icon(
+//           Icons.delete,
+//           color: Colors.red,
+//         ),
+//         onPressed: () {
+//           Navigator.of(context).pop(mealId);
+//         },
+//       ),
+      
