@@ -1,26 +1,8 @@
+import 'package:deli_meals/screens/favorites_screen.dart';
+import 'package:deli_meals/screens/filters_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({Key? key}) : super(key: key);
-
-  Widget buildListTile(String title, IconData icon) {
-    return ListTile(
-      leading: Icon(
-        icon,
-        size: 26,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-          fontFamily: 'RobotoCondensed',
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      onTap: () {},
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -44,16 +26,74 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          buildListTile(
-            'Meal',
-            Icons.restaurant,
+          ListTile(
+            leading: Icon(
+              Icons.restaurant,
+              size: 26,
+            ),
+            title: Text(
+              'Catergoriws',
+              style: TextStyle(
+                fontFamily: 'RobotoCondensed',
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed('/');
+            },
           ),
-          buildListTile(
-            'Filters',
-            Icons.settings,
+          ListTile(
+            leading: Icon(
+              Icons.settings,
+              size: 26,
+            ),
+            title: Text(
+              'Favourites',
+              style: TextStyle(
+                fontFamily: 'RobotoCondensed',
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () {
+              Navigator.of(context).pushNamed(FiltersScreen.routeName);
+            },
           ),
         ],
       ),
     );
   }
 }
+
+
+
+//unfortunatily the below codes are not works properly 
+  // Widget buildListTile(String title, IconData icon, Function _tapHandeler) {
+  //   return ListTile(
+  //     leading: Icon(
+  //       icon,
+  //       size: 26,
+  //     ),
+  //     title: Text(
+  //       title,
+  //       style: TextStyle(
+  //         fontFamily: 'RobotoCondensed',
+  //         fontSize: 24,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //     ),
+  //     onTap: _tapHandeler(),
+  //   );
+  // }
+
+// buildListTile(
+//             'Meal',
+//             Icons.restaurant,
+//             () => Navigator.of(context).pushNamed('/'),
+//           ),
+//           buildListTile(
+//             'Filters',
+//             Icons.settings,
+//             () => Navigator.of(context).pushNamed(FiltersScreen.routeName),
+//           ),
