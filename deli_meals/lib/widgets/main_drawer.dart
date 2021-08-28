@@ -40,7 +40,7 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushNamed('/');
+              Navigator.of(context).pushReplacementNamed('/');
             },
           ),
           ListTile(
@@ -49,7 +49,7 @@ class MainDrawer extends StatelessWidget {
               size: 26,
             ),
             title: Text(
-              'Favourites',
+              'Filters',
               style: TextStyle(
                 fontFamily: 'RobotoCondensed',
                 fontSize: 24,
@@ -57,7 +57,8 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Navigator.of(context).pushNamed(FiltersScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(FiltersScreen.routeName);
             },
           ),
         ],
