@@ -10,31 +10,51 @@ class TabsScreen extends StatefulWidget {
 }
 
 class _TabsScreenState extends State<TabsScreen> {
+  final List<Widget> _pages = [
+    CategoriesScreen(),
+    FavoritesScreen(),
+  ];
+  int _selectPageIndex = 0;
+
+  void _selectPage(int Index) {
+    setState(() {
+      _selectPageIndex = Index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      //initialIndex: 1,  //this one is use for to say which screen should start at the intial state.
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('Meals'),
-          bottom: TabBar(
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Icons.category),
-                text: "Categories",
-              ),
-              Tab(
-                icon: Icon(Icons.star),
-                text: "Favorits",
-              ),
-            ],
-          ),
-        ),
-        body: TabBarView(
-          children: <Widget>[CategoriesScreen(), FavoritesScreen()],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Meals'),
+      ),
+      body: _pages[_selectPageIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.category), label: "Categories"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite), label: "Favourites"),
+        ],
+        onTap: _selectPage,
+        currentIndex: _selectPageIndex,
+        backgroundColor: Theme.of(context).accentColor,
       ),
     );
   }
 }
+// bottom: TabBar(
+//             tabs: <Widget>[
+//               Tab(
+//                 icon: Icon(Icons.category),
+//                 text: "Categories",
+//               ),
+//               Tab(
+//                 icon: Icon(Icons.star),
+//                 text: "Favorits",
+//               ),
+//             ],
+//           ),
+// body: TabBarView(
+//           children: <Widget>[CategoriesScreen(), FavoritesScreen()],
+//         ),
